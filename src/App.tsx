@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DashboardLayout } from './components/DashboardLayout';
+import { Home } from './pages/Home';
 import { Resumen } from './pages/Resumen';
 import { CargaVivienda } from './pages/CargaVivienda';
 import { Acometida } from './pages/Acometida';
@@ -11,7 +12,9 @@ function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path="/" element={<DashboardLayout />}>
+        <Route path="/" element={<Home />} />
+        
+        <Route path="/residencial" element={<DashboardLayout />}>
           <Route index element={<CargaVivienda />} />
           <Route path="acometida" element={<Acometida />} />
           <Route path="regulacion" element={<Regulacion />} />

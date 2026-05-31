@@ -1,14 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Home, Zap, ShieldCheck, Activity, List, FileText } from 'lucide-react';
 import logoPng from '../assets/Logo png.png';
 
 const menuItems = [
-  { name: 'Cargas', path: '/', icon: Zap },
-  { name: 'Acometida', path: '/acometida', icon: ShieldCheck },
-  { name: 'Regulación', path: '/regulacion', icon: Activity },
-  { name: 'Resumen', path: '/resumen', icon: Home },
-  { name: 'Tablero', path: '/cuadro', icon: List },
-  { name: 'Reporte PDF', path: '/pdf', icon: FileText },
+  { name: 'Cargas', path: '/residencial', icon: Zap, exact: true },
+  { name: 'Acometida', path: '/residencial/acometida', icon: ShieldCheck },
+  { name: 'Regulación', path: '/residencial/regulacion', icon: Activity },
+  { name: 'Resumen', path: '/residencial/resumen', icon: Home },
+  { name: 'Tablero', path: '/residencial/cuadro', icon: List },
+  { name: 'Reporte PDF', path: '/residencial/pdf', icon: FileText },
 ];
 
 export function Sidebar() {
@@ -17,7 +17,9 @@ export function Sidebar() {
       {/* Desktop Sidebar */}
       <aside className="w-64 bg-card border-r hidden md:flex flex-col h-full sticky top-0">
         <div className="p-6 border-b flex flex-col items-start justify-center">
-          <img src={logoPng} alt="Ohm App Logo" className="h-12 object-contain dark:drop-shadow-md" />
+          <Link to="/" className="cursor-pointer hover:opacity-80 transition-opacity">
+            <img src={logoPng} alt="Ohm App Logo" className="h-12 object-contain dark:drop-shadow-md" />
+          </Link>
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
@@ -25,6 +27,7 @@ export function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              end={item.exact}
               className={({ isActive }) =>
               `group flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                 isActive 
@@ -46,6 +49,7 @@ export function Sidebar() {
           <NavLink
             key={item.path}
             to={item.path}
+            end={item.exact}
             className={({ isActive }) =>
               `relative flex flex-col items-center justify-center w-full h-full transition-all duration-300 ${
                 isActive 
